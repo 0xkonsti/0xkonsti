@@ -26,6 +26,6 @@ vim.keymap.set({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action)
 vim.keymap.set({ "n", "x" }, "<leader>cc", vim.lsp.codelens.run)
 
 -- Copilot
-vim.keymap.set("i", "<S-tab>", function()
+vim.keymap.set("i", "<S-space>", function()
 	vim.fn.feedkeys(vim.fn["copilot#Accept"](), "")
 end)
