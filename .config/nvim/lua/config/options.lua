@@ -11,6 +11,8 @@ opt.confirm = true
 opt.textwidth = 120
 opt.tabstop = 4
 opt.smartindent = true
+vim.cmd [[set smarttab]]
+vim.cmd [[set expandtab]]
 opt.shiftwidth = 4
 
 opt.undofile = true

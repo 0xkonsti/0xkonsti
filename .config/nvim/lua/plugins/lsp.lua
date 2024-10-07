@@ -29,18 +29,8 @@ return {
 						spacing = 4,
 						source = 'if_many',
 						prefix = '●',
-						-- this will set set the prefix to a function that returns the diagnostics icon based on the severity
-						-- this only works on a recent 0.10.0 build. Will be set to "●" when not supported
-						-- prefix = 'icons',
 					},
 					severity_sort = true,
-					-- CUSTOM: Diagnostic popup
-					-- float = {
-					-- 	border = 'rounded',
-					-- 	source = true,
-					-- 	header = '',
-					-- 	prefix = '',
-					-- },
 					signs = {
 						text = {
 							[vim.diagnostic.severity.ERROR] = LazyVim.config.icons.diagnostics.Error,
@@ -50,24 +40,16 @@ return {
 						},
 					},
 				},
-				-- Enable this to enable the builtin LSP inlay hints on Neovim >= 0.10.0
-				-- Be aware that you also will need to properly configure your LSP server
-				-- to provide the inlay hints.
 				inlay_hints = {
 					enabled = false,
-					exclude = { 'vue' }, -- filetypes for which you don't want to enable inlay hints
+					exclude = { 'vue' },
 				},
-				-- Enable this to enable the builtin LSP code lenses on Neovim >= 0.10.0
-				-- Be aware that you also will need to properly configure your LSP server to
-				-- provide the code lenses.
 				codelens = {
 					enabled = false,
 				},
-				-- Enable lsp cursor word highlighting
 				document_highlight = {
 					enabled = true,
 				},
-				-- Add any global capabilities here
 				capabilities = {
 					workspace = {
 						fileOperations = {
@@ -76,21 +58,12 @@ return {
 						},
 					},
 				},
-				-- Formatting options for vim.lsp.buf.format
 				format = {
 					formatting_options = nil,
 					timeout_ms = nil,
 				},
-				-- LSP Server Settings
-				---@type lspconfig.options
-				---@diagnostic disable: missing-fields
 				servers = {
 					lua_ls = {
-						-- mason = false, -- set to false if you don't want this server to be
-						-- installed with mason Use this to add any additional keymaps for
-						-- specific lsp servers.
-						-- ---@type LazyKeysSpec[]
-						-- keys = {},
 						settings = {
 							Lua = {
 								workspace = { checkThirdParty = false },
@@ -110,6 +83,18 @@ return {
 							},
 						},
 					},
+					cmake = {
+						settings = {
+							CMake = {
+								filestypes = {
+									"CMakeLists.txt",
+									"*.cmake",
+									"cmake",
+								},
+							},
+						},
+					},
+
 				},
 				-- you can do any additional lsp server setup here
 				-- return true if you don't want this server to be setup with lspconfig
@@ -131,16 +116,8 @@ return {
 			-- Setup autoformat
 			LazyVim.format.register(LazyVim.lsp.formatter())
 
-			-- Setup keymaps.
-			-- LazyVim.lsp.on_attach(function(client, buffer)
-			-- 	require('rafi.plugins.lsp.keymaps').on_attach(client, buffer)
-			-- end)
-
 
 			LazyVim.lsp.setup()
-			-- LazyVim.lsp.on_dynamic_capability(
-			-- 	require('rafi.plugins.lsp.keymaps').on_attach
-			-- )
 
 			LazyVim.lsp.words.setup(opts.document_highlight)
 
@@ -285,7 +262,8 @@ return {
 					ensure_installed = vim.tbl_deep_extend(
 						'force',
 						ensure_installed,
-						LazyVim.opts('mason-lspconfig.nvim').ensure_installed or {}
+						LazyVim.opts('mason-lspconfig.nvim').ensure_installed or {
+						}
 					),
 				})
 			end

@@ -1,9 +1,9 @@
 require("config.lazy")
 
-require("config.remap")
-require("config.options")
 require("config.lualine")
 require("config.alpha")
+require("config.remap")
+require("config.options")
 
 vim.opt.termguicolors = true
 require("bufferline").setup {}
@@ -22,6 +22,8 @@ rt.setup({
 })
 
 -- LSP Diagnostics Options Setup
+vim.cmd [[autocmd BufNewFile,BufRead CMakeLists.txt setfiletype cmake]]
+
 local sign = function(opts)
 	vim.fn.sign_define(opts.name, {
 		texthl = opts.name,
