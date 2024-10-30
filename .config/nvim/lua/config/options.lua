@@ -46,3 +46,22 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 
 -- Other
 -- ===
+
+vim.cmd [[
+highlight Normal guibg=none ctermbg=none
+highlight NonText guibg=none ctermbg=none
+highlight LineNr guibg=none ctermbg=none
+highlight SignColumn guibg=none ctermbg=none
+highlight SignColumnSB guibg=none ctermbg=none
+highlight NormalNC guibg=none ctermbg=none
+highlight NormalFloat guibg=none ctermbg=none
+highlight EndOfBuffer guibg=none ctermbg=none
+highlight TelescopeNormal guibg=none ctermbg=none
+highlight TelescopeBorder guibg=none ctermbg=none
+highlight GitSignsAdd guibg=none ctermbg=none
+highlight GitSignsDelete guibg=none ctermbg=none
+highlight GitSignsChange guibg=none ctermbg=none
+
+au ColorScheme * hi Normal ctermbg=none guibg=none
+au ColorScheme myspecialcolors hi Normal ctermbg=red guibg=red
+]]
